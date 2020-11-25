@@ -13,9 +13,14 @@
         .card {
             margin:2%;
         }
+        .btn {
+            margin:2%;
+        }
     </style>
 </head>
 <body>
+   <a href="{% url 'posts' %}" class="btn btn-primary">back</a>
+   <br>
    {% for post in posts %}
         <div class="card" style="width: 40rem; margin-left:5%">
           <div class="card-body">
