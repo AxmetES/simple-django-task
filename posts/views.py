@@ -1,18 +1,9 @@
-import os
-
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.shortcuts import render, get_object_or_404
-from more_itertools import chunked
-from pathlib import Path
-# views.py
-from django.http import HttpResponse
 
 from posts.forms import CommentForm
 from posts.models import Post, Tag
-
-pages_directory = Path('pages')
-os.makedirs(pages_directory, exist_ok=True)
 
 
 def index(request):
