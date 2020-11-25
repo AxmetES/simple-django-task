@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.db.models import Count
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from posts.forms import CommentForm
 from posts.models import Post, Tag
@@ -28,6 +28,7 @@ def post_details(request, slug):
             new_comment = comment_form.save(commit=False)
             new_comment.post = post
             new_comment.save()
+            comment_form = CommentForm()
     else:
         comment_form = CommentForm()
 
