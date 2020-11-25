@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style type="text/css">
+      .tag_card {
+        margin-left: 30px;
+      }
+      .push {
+        display:flex;
+        flex-grow: 1;
+      }
+      .row {
+       margin-top: 5%;
+       margin-left: 5%;
+      }
+      .pagination {
+        position: absolute;
+        margin: 2%;
+        left: 50%;
+        margin-right: -50%;
+      }
+    </style>
+    <title>posts!</title>
+  </head>
+  <body>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+         {% for post in posts_10_on_page %}
+          <div class="card" style="width: 40rem; margin-left:5px">
+            <div class="card-body">
+              <h5 class="card-title">{{post.title}}</h5>
+              <p class="text-muted">
+                время публикации: {{post.pub_date}}
+              </p>
+              <p class="card-text">{{post.text|truncatewords:30}}</p>
+              <h6 class="card-title">{{post.get_commets_count}}</h6>
+              <a href="{% url 'post_details_url' slug=post.slug %}" class="btn btn-primary">читать</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="col">
+        <div class="col" style="">
+          <div class="tag_card" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+              <p class="text-muted">Tags</p>
+              {% for tag in tags %}
+              <li class="list-group-item">
+                <p class="text-muted">
+                <a href="{% url 'tags_url' slug=tag.slug%}" class="text-reset">{{tag}} ({{tag.posts_count}})</a>
+                </p>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <span class="step-links">
+      {% if posts_10_on_page.has_previous %}
+        <a href="?page=1">first</a>
+        <a href="?page={{posts_10_on_page.previous_page_number}}">previous</a>
+      {% endif %}
+      <span class="current">
+        Page {{posts_10_on_page.number}} of {{posts_10_on_page.paginator.num_pages}}.
+      </span>
+      {% if posts_10_on_page.has_next %}
+        <a href="?page={{posts_10_on_page.next_page_number}}">next</a>
+        <a href="?page={{posts_10_on_page.paginator.num_pages}}">last</a>
+      {% endif %}
+    </span>
+  </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
