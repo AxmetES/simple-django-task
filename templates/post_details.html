@@ -1,47 +1,47 @@
 {% extends 'base_blog.html' %}
 {% block title %}
-    post_details
+    {{post.title}} - {{block.super}}
 {% endblock %}
 {% block content %}
-<div class="card" style="width: 100%;">
-    <div class="card-body">
-        <br>
-        <h5 class="card-title">{{post.title}}</h5>
-        <p class="card-text">{{post.text}}</p>
-    </div>
-    <div class="comments">
-        <hr>
-        <div>Comments</div>
-        <br>
-        {% for comment in comments %}
-        <div class="comment">
-            <div class="info">
-                Comment by {{ comment.author }}
-            </div>
-            <p>
-                {{ comment.text|linebreaks }}
-            </p>
-        </div>
-        {% endfor %}
-        <hr>
-        <h5>Add a new comment</h5>
-        <form action="{% url 'post_details_url' slug=post.slug %}" method="post">
-            {% csrf_token %}
-            {% for field in comment_form %}
-                <div class="from-group">
-                  {%if field.errors %}
-                    <div class="alert alert-danger">
-                        {{field.errors}}
-                    </div>
-                  {% endif %}
-                  {{field.label}}
-                    <br>
-                  {{field}}
-                </div>
-            {% endfor %}
+    <div class="card" style="width: 100%;">
+        <div class="card-body">
             <br>
-            <button type="submit" class="btn btn-primary">add comment</button>
-        </form>
+            <h5 class="card-title">{{post.title}}</h5>
+            <p class="card-text">{{post.text}}</p>
+        </div>
+        <div class="comments">
+            <hr>
+            <div>Comments</div>
+            <br>
+            {% for comment in comments %}
+            <div class="comment">
+                <div class="info">
+                    Comment by {{ comment.author }}
+                </div>
+                <p>
+                    {{ comment.text|linebreaks }}
+                </p>
+            </div>
+            {% endfor %}
+            <hr>
+            <h5>Add a new comment</h5>
+            <form action="{% url 'post_details_url' slug=post.slug %}" method="post">
+                {% csrf_token %}
+                {% for field in comment_form %}
+                    <div class="from-group">
+                      {%if field.errors %}
+                        <div class="alert alert-danger">
+                            {{field.errors}}
+                        </div>
+                      {% endif %}
+                      {{field.label}}
+                        <br>
+                      {{field}}
+                    </div>
+                {% endfor %}
+                <br>
+                <button type="submit" class="btn btn-primary">add comment</button>
+            </form>
+        </div>
     </div>
-</div>
 {% endblock %}
