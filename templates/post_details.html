@@ -1,29 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>post_details</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style type="text/css">
-        .card {
-        margin-left:3%;
-        }
-        .comments {
-        margin-left:3%;
-        margin-bottom:2%;
-        }
-        p {
-        text-indent:20px;
-        }
-        .btn {
-            margin:2%;
-        }s
-
-    </style>
-</head>
-<body>
-<a class="btn btn-primary" href="{% url 'posts' %}" role="button">back</a>
+{% extends 'base_blog.html' %}
+{% block title %}
+    post_details
+{% endblock %}
+{% block content %}
 <div class="card" style="width: 100%;">
     <div class="card-body">
         <br>
@@ -65,5 +44,4 @@
         </form>
     </div>
 </div>
-</body>
-</html>
+{% endblock %}
