@@ -6,7 +6,7 @@
 
 {% block content %}
 <!--Pagination-->
-<nav aria-label="navigation">
+<nav aria-label="navigation" class="navigation">
   <ul class="pagination">
       {% if posts_10_on_page.has_previous %}
         <li class="page-item"><a class="page-link" href="?page={{ posts_10_on_page.previous_page_number }}">Previous</a></li>
@@ -44,11 +44,11 @@
         <ul class="list-group list-group-flush">
           <p class="text-muted">Tags</p>
           {% for tag in tags %}
-          <li class="list-group-item">
-            <p class="text-muted">
-            <a href="{{ tag.get_absolute_url }}" class="text-reset">{{tag}} ({{tag.posts_count}})</a>
-            </p>
-          </li>
+            <li class="list-group-item">
+              <p class="text-muted">
+              <a href="{{ tag.get_absolute_url }}" class="text-reset">{{tag}} ({{tag.posts_count}})</a>
+              </p>
+            </li>
           {% endfor %}
         </ul>
       </div>

@@ -3,7 +3,7 @@
     {{post.title}} - {{block.super}}
 {% endblock %}
 {% block content %}
-    <div class="card" style="width: 100%;">
+    <div class="card" style="width: 95%;">
         <div class="card-body">
             <br>
             <h5 class="card-title">{{post.title}}</h5>
@@ -24,24 +24,28 @@
             </div>
             {% endfor %}
             <hr>
-            <h5>Add a new comment</h5>
-            <form action="{% url 'post_details_url' slug=post.slug %}" method="post">
-                {% csrf_token %}
-                {% for field in comment_form %}
-                    <div class="from-group">
-                      {%if field.errors %}
-                        <div class="alert alert-danger">
-                            {{field.errors}}
-                        </div>
-                      {% endif %}
-                      {{field.label}}
-                        <br>
-                      {{field}}
-                    </div>
-                {% endfor %}
-                <br>
-                <button type="submit" class="btn btn-primary">add comment</button>
-            </form>
+
         </div>
     </div>
+<div class="add_comment">
+    <h5>Add a new comment</h5>
+    <form action="{% url 'post_details_url' slug=post.slug %}" method="post">
+        {% csrf_token %}
+        {% for field in comment_form %}
+            <div class="from-group">
+              {%if field.errors %}
+                <div class="alert alert-danger">
+                    {{field.errors}}
+                </div>
+              {% endif %}
+              {{field.label}}
+                <br>
+              {{field}}
+            </div>
+        {% endfor %}
+        <br>
+        <button type="submit" class="btn btn-primary">add comment</button>
+    </form>
+</div>
+
 {% endblock %}

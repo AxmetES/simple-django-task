@@ -1,11 +1,14 @@
 {% extends 'base_blog.html' %}
 
 {% block title %}
-    tag
+     {{tag_slug}}
 {% endblock %}
 
 {% block content %}
+<div class="container">
     {% for post in posts %}
-        {% include 'includes/post_card_template.html' %}
+      {% include 'includes/post_card_template.html' %}
     {% endfor %}
+</div>
+
 {% endblock %}
