@@ -21,6 +21,8 @@ from posts import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Index.as_view(), name='posts'),
+    path('create_tag', views.CreateTag.as_view(), name='create_tag_url'),
+    path('create_post', views.CreatePost.as_view(), name='create_post_url'),
     path('post_details/<str:slug>/', views.PostDetails.as_view(), name='post_details_url'),
     path('tags/<str:slug>/', views.TagPosts.as_view(), name='tags_url'),
 ]

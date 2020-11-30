@@ -3,6 +3,7 @@
     {{post.title}} - {{block.super}}
 {% endblock %}
 {% block content %}
+<!--Post-->
     <div class="card" style="width: 95%;">
         <div class="card-body">
             <br>
@@ -24,9 +25,10 @@
             </div>
             {% endfor %}
             <hr>
-
         </div>
     </div>
+
+<!--Add comment-->
 <div class="add_comment">
     <h5>Add a new comment</h5>
     <form action="{% url 'post_details_url' slug=post.slug %}" method="post">

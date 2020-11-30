@@ -1,10 +1,12 @@
 from django.core.paginator import Paginator
 from django.db.models import Count
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpRequest
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import View
 
-from posts.forms import CommentForm
+from posts.forms import CommentForm, CreateTagForm, CreatePostForm
 from posts.models import Post, Tag
+from posts.utils import ObjectCreateMixin
 
 
 class Index(View):
@@ -41,8 +43,18 @@ class PostDetails(View):
             comment_form = CommentForm()
 
         return render(request, 'post_details.html', context={'post': post,
-                                                                 'comments': comments,
-                                                                 'comment_form': comment_form})
+                                                             'comments': comments,
+                                                             'comment_form': comment_form})
+
+
+class CreatePost(ObjectCreateMixin, View):
+    template = 'create_post.html'
+    model_form = CreatePostForm
+
+
+class CreateTag(ObjectCreateMixin, View):
+    template = 'create_tag.html'
+    model_form = CreateTagForm
 
 
 class TagPosts(View):

@@ -1,0 +1,18 @@
+{% extends 'base_blog.html' %}
+    {% block title %}
+    create tag
+    {% endblock %}
+    {% block content %}
+      <div class="create">
+        <form action="{% url 'create_tag_url' %}" method="post">
+          {% csrf_token %}
+            {% for field in create_form %}
+              <div class="form-group">
+                {{field.label}}
+                {{field}}
+              </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">create tag</button>
+        </form>
+      </div>
+{% endblock %}
