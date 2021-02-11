@@ -19,3 +19,5 @@ To start project:
 ```commandline
 python3 manage.py runserver
 ```
+## PreView
+![plot](./preview.png)

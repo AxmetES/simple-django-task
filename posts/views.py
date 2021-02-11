@@ -1,6 +1,5 @@
 from django.core.paginator import Paginator
 from django.db.models import Count
-from django.http import HttpRequest
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import View
 
