@@ -20,4 +20,5 @@ To start project:
 python3 manage.py runserver
 ```
 ## PreView
+
 ![plot](./preview.png)
