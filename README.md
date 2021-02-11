@@ -21,4 +21,4 @@ python3 manage.py runserver
 ```
 ## PreView
 
-![preview](preview.png)
+![preview](./preview.png)
